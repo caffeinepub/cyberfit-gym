@@ -1,0 +1,586 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/assets/fonts/BricolageGrotesque[opsz,wdth,wght].woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/assets/fonts/Outfit[wght].woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Mona Sans";
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+  src: url("/assets/fonts/MonaSans[wdth,wght].woff2") format("woff2");
+}
+
+@layer base {
+  :root {
+    --radius: 0.25rem;
+
+    /* Cyberpunk dark palette - OKLCH raw L C H values */
+    --background: 0.09 0.015 280;
+    --foreground: 0.97 0 0;
+    --card: 0.12 0.02 280;
+    --card-foreground: 0.97 0 0;
+    --popover: 0.13 0.02 280;
+    --popover-foreground: 0.97 0 0;
+
+    /* Primary: Neon electric blue */
+    --primary: 0.78 0.18 210;
+    --primary-foreground: 0.09 0.015 280;
+
+    /* Secondary: Neon pink */
+    --secondary: 0.68 0.28 330;
+    --secondary-foreground: 0.09 0.015 280;
+
+    --muted: 0.18 0.02 280;
+    --muted-foreground: 0.6 0.04 240;
+
+    /* Accent: Cyber green */
+    --accent: 0.82 0.22 155;
+    --accent-foreground: 0.09 0.015 280;
+
+    --destructive: 0.65 0.27 25;
+    --destructive-foreground: 0.97 0 0;
+
+    --border: 0.25 0.05 280;
+    --input: 0.18 0.03 280;
+    --ring: 0.78 0.18 210;
+
+    --chart-1: 0.78 0.18 210;
+    --chart-2: 0.68 0.28 330;
+    --chart-3: 0.82 0.22 155;
+    --chart-4: 0.65 0.25 295;
+    --chart-5: 0.75 0.22 55;
+
+    --sidebar: 0.11 0.02 280;
+    --sidebar-foreground: 0.97 0 0;
+    --sidebar-primary: 0.78 0.18 210;
+    --sidebar-primary-foreground: 0.09 0.015 280;
+    --sidebar-accent: 0.18 0.02 280;
+    --sidebar-accent-foreground: 0.97 0 0;
+    --sidebar-border: 0.25 0.05 280;
+    --sidebar-ring: 0.78 0.18 210;
+
+    /* Neon color raw values */
+    --neon-blue: #00d4ff;
+    --neon-pink: #ff00ff;
+    --neon-green: #00ff88;
+    --neon-purple: #7b2fff;
+    --neon-orange: #ff6600;
+    --bg-deep: #0a0a0f;
+    --bg-dark-purple: #0d0019;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background-color: #0a0a0f;
+    font-family: "Outfit", sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* ==================== CYBERPUNK GRID BACKGROUND ==================== */
+.cyber-grid {
+  background-image:
+    linear-gradient(rgba(0, 212, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: gridPulse 4s ease-in-out infinite;
+}
+
+.cyber-grid-pink {
+  background-image:
+    linear-gradient(rgba(255, 0, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 0, 255, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+@keyframes gridPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* ==================== NEON GLOW EFFECTS ==================== */
+.neon-text-blue {
+  color: #00d4ff;
+  text-shadow:
+    0 0 10px rgba(0, 212, 255, 0.9),
+    0 0 20px rgba(0, 212, 255, 0.7),
+    0 0 40px rgba(0, 212, 255, 0.4),
+    0 0 80px rgba(0, 212, 255, 0.2);
+}
+
+.neon-text-pink {
+  color: #ff00ff;
+  text-shadow:
+    0 0 10px rgba(255, 0, 255, 0.9),
+    0 0 20px rgba(255, 0, 255, 0.7),
+    0 0 40px rgba(255, 0, 255, 0.4);
+}
+
+.neon-text-green {
+  color: #00ff88;
+  text-shadow:
+    0 0 10px rgba(0, 255, 136, 0.9),
+    0 0 20px rgba(0, 255, 136, 0.6),
+    0 0 40px rgba(0, 255, 136, 0.3);
+}
+
+.neon-border-blue {
+  border: 1px solid #00d4ff;
+  box-shadow:
+    0 0 10px rgba(0, 212, 255, 0.4),
+    0 0 20px rgba(0, 212, 255, 0.2),
+    inset 0 0 10px rgba(0, 212, 255, 0.05);
+}
+
+.neon-border-pink {
+  border: 1px solid #ff00ff;
+  box-shadow:
+    0 0 10px rgba(255, 0, 255, 0.4),
+    0 0 20px rgba(255, 0, 255, 0.2),
+    inset 0 0 10px rgba(255, 0, 255, 0.05);
+}
+
+.neon-border-green {
+  border: 1px solid #00ff88;
+  box-shadow:
+    0 0 10px rgba(0, 255, 136, 0.4),
+    0 0 20px rgba(0, 255, 136, 0.2),
+    inset 0 0 10px rgba(0, 255, 136, 0.05);
+}
+
+/* ==================== NEON BUTTONS ==================== */
+.btn-neon-blue {
+  background: transparent;
+  color: #00d4ff;
+  border: 1px solid #00d4ff;
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.4), 0 0 30px rgba(0, 212, 255, 0.2), inset 0 0 15px rgba(0, 212, 255, 0.05);
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-neon-blue::before {
+  content: "";
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.15), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-neon-blue:hover::before {
+  left: 100%;
+}
+
+.btn-neon-blue:hover {
+  background: rgba(0, 212, 255, 0.1);
+  box-shadow: 0 0 25px rgba(0, 212, 255, 0.8), 0 0 50px rgba(0, 212, 255, 0.4), inset 0 0 25px rgba(0, 212, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.btn-neon-pink {
+  background: transparent;
+  color: #ff00ff;
+  border: 1px solid #ff00ff;
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.4), 0 0 30px rgba(255, 0, 255, 0.2), inset 0 0 15px rgba(255, 0, 255, 0.05);
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-neon-pink:hover {
+  background: rgba(255, 0, 255, 0.1);
+  box-shadow: 0 0 25px rgba(255, 0, 255, 0.8), 0 0 50px rgba(255, 0, 255, 0.4), inset 0 0 25px rgba(255, 0, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.btn-neon-green {
+  background: rgba(0, 255, 136, 0.1);
+  color: #00ff88;
+  border: 1px solid #00ff88;
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.4), 0 0 30px rgba(0, 255, 136, 0.2);
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-neon-green:hover {
+  background: rgba(0, 255, 136, 0.2);
+  box-shadow: 0 0 30px rgba(0, 255, 136, 0.8), 0 0 60px rgba(0, 255, 136, 0.4);
+  transform: translateY(-2px);
+}
+
+/* ==================== CARDS ==================== */
+.cyber-card {
+  background: rgba(13, 10, 30, 0.8);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.cyber-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cyber-card:hover {
+  border-color: rgba(0, 212, 255, 0.6);
+  box-shadow:
+    0 0 20px rgba(0, 212, 255, 0.15),
+    0 0 40px rgba(0, 212, 255, 0.08),
+    0 20px 40px rgba(0, 0, 0, 0.5);
+  transform: translateY(-4px);
+}
+
+.cyber-card:hover::before {
+  opacity: 1;
+}
+
+.cyber-card-premium {
+  background: rgba(20, 8, 40, 0.85);
+  border: 1px solid rgba(255, 0, 255, 0.4);
+  box-shadow:
+    0 0 20px rgba(255, 0, 255, 0.15),
+    0 0 40px rgba(255, 0, 255, 0.08);
+  transition: all 0.3s ease;
+}
+
+.cyber-card-premium:hover {
+  border-color: rgba(255, 0, 255, 0.8);
+  box-shadow:
+    0 0 30px rgba(255, 0, 255, 0.3),
+    0 0 60px rgba(255, 0, 255, 0.15),
+    0 20px 40px rgba(0, 0, 0, 0.5);
+  transform: translateY(-6px);
+}
+
+/* ==================== SCROLL ANIMATIONS ==================== */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.scroll-reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scroll-reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.scroll-reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scroll-reveal-delay-1 { transition-delay: 0.1s; }
+.scroll-reveal-delay-2 { transition-delay: 0.2s; }
+.scroll-reveal-delay-3 { transition-delay: 0.3s; }
+.scroll-reveal-delay-4 { transition-delay: 0.4s; }
+.scroll-reveal-delay-5 { transition-delay: 0.5s; }
+.scroll-reveal-delay-6 { transition-delay: 0.6s; }
+
+/* ==================== FLOATING PARTICLES ==================== */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(100vh) translateX(0px);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% {
+    transform: translateY(-20px) translateX(30px);
+    opacity: 0;
+  }
+}
+
+/* ==================== NEON RINGS (HERO) ==================== */
+@keyframes ringRotate {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes ringRotateReverse {
+  from { transform: translate(-50%, -50%) rotate(360deg); }
+  to { transform: translate(-50%, -50%) rotate(0deg); }
+}
+
+@keyframes ringPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+.ring-1 {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 212, 255, 0.4);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3), inset 0 0 20px rgba(0, 212, 255, 0.1);
+  animation: ringRotate 8s linear infinite, ringPulse 3s ease-in-out infinite;
+}
+
+.ring-2 {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 450px; height: 450px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 0, 255, 0.3);
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.2);
+  animation: ringRotateReverse 12s linear infinite, ringPulse 4s ease-in-out infinite;
+  border-style: dashed;
+}
+
+.ring-3 {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 255, 136, 0.2);
+  animation: ringRotate 20s linear infinite;
+}
+
+/* ==================== ANIMATED COUNTER ==================== */
+@keyframes counterGlow {
+  0%, 100% {
+    text-shadow:
+      0 0 10px rgba(0, 212, 255, 0.9),
+      0 0 20px rgba(0, 212, 255, 0.7),
+      0 0 40px rgba(0, 212, 255, 0.4);
+  }
+  50% {
+    text-shadow:
+      0 0 20px rgba(0, 212, 255, 1),
+      0 0 40px rgba(0, 212, 255, 0.9),
+      0 0 80px rgba(0, 212, 255, 0.6),
+      0 0 120px rgba(0, 212, 255, 0.3);
+  }
+}
+
+.counter-number {
+  color: #00d4ff;
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: clamp(5rem, 15vw, 9rem);
+  font-weight: 900;
+  animation: counterGlow 2s ease-in-out infinite;
+  line-height: 1;
+}
+
+/* ==================== NAV ==================== */
+.nav-glass {
+  background: rgba(10, 10, 15, 0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+}
+
+/* ==================== SECTION HEADING ==================== */
+.section-heading {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-weight: 900;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.section-heading-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.section-heading-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60%;
+  height: 3px;
+  background: linear-gradient(90deg, #00d4ff, transparent);
+  box-shadow: 0 0 10px #00d4ff;
+}
+
+/* ==================== FORM INPUTS ==================== */
+.cyber-input {
+  background: rgba(0, 212, 255, 0.03);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  color: #ffffff;
+  font-family: "Outfit", sans-serif;
+  transition: all 0.3s ease;
+}
+
+.cyber-input:focus {
+  outline: none;
+  border-color: #00d4ff;
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.2), inset 0 0 5px rgba(0, 212, 255, 0.05);
+  background: rgba(0, 212, 255, 0.05);
+}
+
+.cyber-input::placeholder {
+  color: rgba(160, 160, 176, 0.5);
+}
+
+/* ==================== GALLERY ==================== */
+.gallery-img-wrap {
+  overflow: hidden;
+  position: relative;
+}
+
+.gallery-img-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.gallery-img-wrap:hover::after {
+  border-color: #00d4ff;
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.5), inset 0 0 20px rgba(0, 212, 255, 0.05);
+}
+
+.gallery-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.gallery-img-wrap:hover img {
+  transform: scale(1.08);
+}
+
+/* ==================== HERO SCAN LINE ==================== */
+@keyframes scanLine {
+  0% { top: -10%; }
+  100% { top: 110%; }
+}
+
+.scan-line {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.4), transparent);
+  animation: scanLine 6s linear infinite;
+  pointer-events: none;
+}
+
+/* ==================== TESTIMONIAL STARS ==================== */
+.star-gold {
+  color: #ffd700;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+}
+
+/* ==================== GRADIENT TEXT ==================== */
+.gradient-text-cyber {
+  background: linear-gradient(135deg, #00d4ff 0%, #ff00ff 50%, #00ff88 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ==================== GLITCH EFFECT ==================== */
+@keyframes glitch {
+  0%, 100% { clip-path: inset(0 0 100% 0); }
+  20% { clip-path: inset(10% 0 40% 0); transform: translateX(-3px); }
+  40% { clip-path: inset(40% 0 20% 0); transform: translateX(3px); }
+  60% { clip-path: inset(70% 0 5% 0); transform: translateX(-2px); }
+  80% { clip-path: inset(5% 0 70% 0); transform: translateX(2px); }
+}
+
+/* ==================== MOBILE ==================== */
+@media (max-width: 768px) {
+  .ring-1 { width: 200px; height: 200px; }
+  .ring-2 { width: 300px; height: 300px; }
+  .ring-3 { width: 400px; height: 400px; }
+}
+
+/* ==================== SCROLLBAR ==================== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 212, 255, 0.4);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 212, 255, 0.7);
+}
